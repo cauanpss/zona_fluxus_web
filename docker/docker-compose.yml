@@ -8,8 +8,7 @@ services:
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-zona_fluxus}
       POSTGRES_USER: ${POSTGRES_USER:-zona_fluxus_user}
-      POSTGRES_PASSWORD: ${POSTGRES_PA
-      SSWORD:-zona_fluxus_password}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-zona_fluxus_password}
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
     ports:
       - "5432:5432"
