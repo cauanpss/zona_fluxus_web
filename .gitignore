@@ -1,10 +1,45 @@
-node_modules
+# Dependências
+node_modules/
+
+# Arquivos de ambiente
 .env
-dist
-build
-coverage
-.vscode/settings.json
+.env.local
+.env.*.local
 
-.prisma
+# Pastas de build
+dist/
+build/
+coverage/
 
+# Configurações do Cursor/VS Code
+.vscode/
+!.vscode/extensions.json
+.cursor/
+!.cursor/rules/
+
+# Prisma
+.prisma/
+
+# Arquivos do sistema
 .DS_Store
+Thumbs.db
+
+# Arquivos de chave/API
+zf_apikey.txt
+*.key
+*.pem
+*.crt
+
+# Logs
+logs/
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+.cache/
+
+# Arquivos de debug
+*.swp
+*.swo
+*~

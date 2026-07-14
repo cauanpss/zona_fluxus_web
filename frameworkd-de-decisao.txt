@@ -1,0 +1,26 @@
+# Framework de Decisão: [Nome da Biblioteca]
+
+## 1. Viabilidade Financeira
+- [ ] 100% gratuito?
+- [ ] Tem tier gratuito suficiente?
+- [ ] Preciso pagar para features essenciais?
+
+## 2. Curva de Aprendizado
+- [ ] Posso aprender em 2 dias?
+- [ ] Tem boa documentação?
+- [ ] Exemplos práticos disponíveis?
+
+## 3. Produtividade
+- [ ] Acelera o desenvolvimento?
+- [ ] Reduz boilerplate?
+- [ ] Previne erros comuns?
+
+## 4. Performance Inicial
+- [ ] Rápido o suficiente para 100 usuários?
+- [ ] Não precisa de otimização complexa?
+
+## 5. Migrabilidade
+- [ ] Posso trocar depois sem reescrever tudo?
+- [ ] Abstração clara?
+
+## DECISÃO: [Aceitar/Rejeitar/Adiar]
