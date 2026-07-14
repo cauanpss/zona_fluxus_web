@@ -30,6 +30,9 @@ zf_apikey.txt
 *.pem
 *.crt
 
+# Arquivos pessoais (não versionar)
+/pessoais/
+
 # Logs
 logs/
 *.log
