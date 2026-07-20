@@ -1,11 +1,10 @@
+name: zona-fluxus
+
 services:
   postgres:
     image: postgres:17
-    
-    container_name: zona-fluxus-postgres
-    restart: unless-stopped
-    env_file:
-      - .env
+
+    restart: unless-stopped 
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
