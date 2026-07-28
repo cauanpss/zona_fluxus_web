@@ -1,11 +1,11 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2022",          // Para Node.js 18+
+    "target": "ES2022",          
     "module": "NodeNext",
+    "types": ["node"], 
     "moduleResolution": "NodeNext",
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", ]
 }
