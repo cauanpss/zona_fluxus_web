@@ -14,9 +14,7 @@
     "docker:down": "docker-compose -f docker/docker-compose.yml down"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
-    "prisma": "^7.9.0",
-    "@prisma/client": "^7.9.0"
+    "concurrently": "^9.1.2"
   },
   "workspaces": [
     "backend",
