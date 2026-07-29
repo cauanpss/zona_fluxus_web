@@ -3,15 +3,14 @@ import { PrismaPg } from "@prisma/adapter-pg";
 import dotenv from "dotenv";
 import path from "path";
 
-
-dotenv.config({ 
-  path: path.resolve(process.cwd(), "../../.env") // ajuste o caminho
+dotenv.config({
+    path: path.resolve(process.cwd(), "../../.env"), // ajuste o caminho
 });
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
 const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL,
 });
 
 export const prisma = globalForPrisma.prisma || new PrismaClient({ adapter });
