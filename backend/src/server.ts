@@ -1,35 +1,28 @@
-import Fastify from "fastify";
-import cors from "@fastify/cors";
-import jwt from "@fastify/jwt";
-import { prisma } from "./lib/prisma.js";
+// backend/src/server.ts
+import "dotenv/config";
+import fastify from "fastify";
+import fastifyJwt from "@fastify/jwt";
 import { userRoutes } from "./routes/userRoutes.js";
-import { healthRoutes } from "./routes/healthRoutes.js";
 
-async function main() {
-    const app = Fastify({ logger: true });
+const app = fastify();
 
-    // Registrar plugins
-    await app.register(cors, { origin: "*" });
-    await app.register(jwt, {
-        secret: process.env.JWT_SECRET || "supersecretkey",
-    });
+// Configurar JWT
+app.register(fastifyJwt, {
+    secret: process.env.JWT_SECRET || "my-secret-key",
+});
 
-    // Registrar rotas
-    await app.register(userRoutes);
-    await app.register(healthRoutes);
+// Rotas
+app.register(userRoutes);
 
-    // Iniciar servidor
-    const start = async () => {
-        try {
-            await app.listen({ port: 3333, host: "0.0.0.0" });
-            console.log("🚀 Server running on http://localhost:3333");
-        } catch (err) {
-            app.log.error(err);
-            process.exit(1);
-        }
-    };
+// Iniciar
+const start = async () => {
+    try {
+        await app.listen({ port: 3333, host: "0.0.0.0" });
+        console.log("Server running on http://localhost:3333");
+    } catch (err) {
+        app.log.error(err);
+        process.exit(1);
+    }
+};
 
-    start();
-}
-
-main();
+start();
