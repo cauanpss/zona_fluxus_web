@@ -1,35 +1,51 @@
+// services/userService.ts
 import bcrypt from "bcrypt";
 import { prisma } from "../lib/prisma.js";
-import { registerSchema, loginSchema } from "../schemas/userSchemas.js";
-import { z } from "zod";
-
-type RegisterInput = z.infer<typeof registerSchema>;
-type LoginInput = z.infer<typeof loginSchema>;
 
 export const userService = {
-    async createUser(data: unknown) {
-        const validation = registerSchema.safeParse(data);
+    async createUser(data: { email: string; password: string; name: string }) {
+        // Verificar se usuário já existe
+        const existingUser = await prisma.user.findUnique({
+            where: { email: data.email },
+        });
 
-        if (!validation.success) {
-            throw validation.error;
+        if (existingUser) {
+            throw new Error("Email já cadastrado");
         }
 
-        const validatedData = validation.data;
-
-        const hashedPassword = await bcrypt.hash(validatedData.password, 10);
+        const hashedPassword = await bcrypt.hash(data.password, 10);
 
         return prisma.user.create({
             data: {
-                email: validatedData.email,
-                name: validatedData.name,
+                email: data.email,
+                name: data.name,
                 password: hashedPassword,
             },
-            select: { id: true, email: true, name: true, createdAt: true },
+            select: {
+                id: true,
+                email: true,
+                name: true,
+                createdAt: true,
+            },
         });
     },
 
     async getUserByEmail(email: string) {
         return prisma.user.findUnique({ where: { email } });
+    },
+
+    // 👈 ADICIONE ESTE MÉTODO
+    async getUserById(id: number) {
+        return prisma.user.findUnique({
+            where: { id },
+            select: {
+                id: true,
+                email: true,
+                name: true,
+                createdAt: true,
+                updatedAt: true,
+            },
+        });
     },
 
     async validatePassword(plain: string, hashed: string) {
