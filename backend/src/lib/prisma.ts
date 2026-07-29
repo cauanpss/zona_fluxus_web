@@ -1,3 +1,19 @@
-import { PrismaClient } from "../../../prisma/generated/client.js";
-const prisma = new PrismaClient();
-const users = await prisma.user.findMany();
+import { PrismaClient } from "../generated/prisma/client.js";
+import { PrismaPg } from "@prisma/adapter-pg";
+import dotenv from "dotenv";
+import path from "path";
+
+
+dotenv.config({ 
+  path: path.resolve(process.cwd(), "../../.env") // ajuste o caminho
+});
+
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
+
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
+});
+
+export const prisma = globalForPrisma.prisma || new PrismaClient({ adapter });
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
