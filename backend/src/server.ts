@@ -3,6 +3,7 @@ import cors from "@fastify/cors";
 import jwt from "@fastify/jwt";
 import { prisma } from "./lib/prisma.js";
 import { userRoutes } from "./routes/userRoutes.js";
+import { healthRoutes } from "./routes/healthRoutes.js";
 
 async function main() {
     const app = Fastify({ logger: true });
@@ -15,11 +16,7 @@ async function main() {
 
     // Registrar rotas
     await app.register(userRoutes);
-
-    // Rota de saúde
-    app.get("/health", async () => {
-        return { status: "ok", timestamp: new Date().toISOString() };
-    });
+    await app.register(healthRoutes);
 
     // Iniciar servidor
     const start = async () => {
@@ -35,4 +32,4 @@ async function main() {
     start();
 }
 
-main();
+main;
