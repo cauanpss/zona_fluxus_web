@@ -34,7 +34,6 @@ export const userService = {
         return prisma.user.findUnique({ where: { email } });
     },
 
-    // 👈 ADICIONE ESTE MÉTODO
     async getUserById(id: number) {
         return prisma.user.findUnique({
             where: { id },

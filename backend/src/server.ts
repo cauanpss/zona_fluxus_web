@@ -3,6 +3,7 @@ import "dotenv/config";
 import fastify from "fastify";
 import fastifyJwt from "@fastify/jwt";
 import { userRoutes } from "./routes/userRoutes.js";
+import { healthRoutes } from "./routes/healthRoutes.js";
 
 const app = fastify();
 
@@ -13,6 +14,7 @@ app.register(fastifyJwt, {
 
 // Rotas
 app.register(userRoutes);
+app.register(healthRoutes);
 
 // Iniciar
 const start = async () => {

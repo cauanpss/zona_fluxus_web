@@ -6,22 +6,26 @@ import { z } from "zod";
 export const userController = {
     async register(request: FastifyRequest, reply: FastifyReply) {
         try {
-            const data = registerSchema.parse(request.body);
+            console.log("🔵 1 - Iniciando registro");
+
+            const data = registerSchema.parse(request.body);            
             const user = await userService.createUser(data);
 
             // Gerar token JWT
-            const token = reply.jwtSign(
+            const token = await reply.jwtSign(
                 { userId: user.id, email: user.email },
                 { expiresIn: "7d" },
             );
-
-            return reply.status(201).send({
+            
+            const response = {
                 message: "Usuário criado com sucesso",
                 user,
                 token,
-            });
+            };
+            
+            return reply.status(201).send(response);
         } catch (error) {
-            // 🔥 TRATAMENTO CORRETO PARA ERRO DO ZOD
+
             if (error instanceof z.ZodError) {
                 return reply.status(400).send({
                     error: "Dados inválidos",
@@ -32,7 +36,6 @@ export const userController = {
                 });
             }
 
-            // Outros erros (como email já cadastrado)
             return reply.status(400).send({
                 error:
                     error instanceof Error
@@ -63,7 +66,7 @@ export const userController = {
                     .send({ error: "Credenciais inválidas" });
             }
 
-            const token = reply.jwtSign(
+            const token = await reply.jwtSign(
                 { userId: user.id, email: user.email },
                 { expiresIn: "7d" },
             );
@@ -78,7 +81,6 @@ export const userController = {
                 },
             });
         } catch (error) {
-            // 🔥 TRATAMENTO CORRETO PARA ERRO DO ZOD
             if (error instanceof z.ZodError) {
                 return reply.status(400).send({
                     error: "Dados inválidos",
@@ -102,23 +104,11 @@ export const userController = {
         try {
             const user = (request as any).user;
 
-            if (!user) {
+            if (!user || !user.userId) {
                 return reply.status(401).send({ error: "Não autorizado" });
             }
 
-            // Buscar dados completos do usuário
             const userData = await userService.getUserById(user.userId);
-
-            if (!userData) {
-                return reply
-                    .status(404)
-                    .send({ error: "Usuário não encontrado" });
-            }
-
-            const userId =
-                typeof user.userId === "string"
-                    ? parseInt(user.userId)
-                    : user.userId;
 
             if (!userData) {
                 return reply
@@ -136,6 +126,7 @@ export const userController = {
                 },
             });
         } catch (error) {
+            console.error("Erro no getMe:", error);
             return reply.status(500).send({
                 error: "Erro ao buscar perfil",
             });
