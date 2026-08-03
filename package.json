@@ -11,7 +11,8 @@
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
     "docker:up": "docker-compose -f docker/docker-compose.yml up -d",
-    "docker:down": "docker-compose -f docker/docker-compose.yml down"
+    "docker:down": "docker-compose -f docker/docker-compose.yml down",
+    "generateStructure": "node pessoais/scripts/generateStructure.js"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
