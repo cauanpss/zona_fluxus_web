@@ -1,8 +1,0 @@
-
-pensa sobre safeParse como camada de validação no service do backend (userService.ts tem validação em loginSchema, mas dentro do serviço não. Tudo cai sobre responsabilidade da camada de controller (rotas))
-
-
-j  ->> VERIFICAR PARTE DO ROUTTERS E VALIDAÇÃO DOS DADOS DOS SERVICES
-
-SEGURANÇA:
--Validação e filtragem
