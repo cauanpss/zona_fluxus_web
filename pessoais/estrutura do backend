@@ -1,0 +1,10 @@
+backend/
+├── src/
+│   ├── controllers/     # Lógica das rotas
+│   ├── routes/          # Definição de rotas
+│   ├── services/        # Regras de negócio, integração com Prisma
+│   ├── middlewares/     # Autenticação, logs, etc.
+│   ├── lib/             # Configurações (Prisma, env, etc.)
+│   └── server.ts        # Entrypoint do servidor
+├── tsconfig.json        # Configuração do TypeScript
+└── package.json         # (opcional) se quiser separar, mas usaremos o da raiz

@@ -1,0 +1,39 @@
+Guia projeto:
+
+✔ Criar PostgreSQL no Docker
+
+↓
+
+✔ Configurar Prisma
+
+↓
+
+✔ Criar Backend
+
+↓
+
+✔ Criar Frontend
+
+↓
+
+✔ JWT
+
+↓
+
+✔ Primeira feature
+
+
+-> usar somente o postgre no supabase
+-> usar storage do supabase para armazenar as imagens / opção 2 cloudinary
+-> auth = JWT próprio
+-> backend node
+-> front react
+
+-> ORM (object relational mapping) = prisma
+
+
+
+
+
+**Em algum momento entender melhor o gitignore.
+***Criar interface para o openclaude

@@ -1,0 +1,65 @@
+====================================================
+       COMANDOS ÚTEIS - ZONA FLUXUS
+====================================================
+
+# DOCKER
+-----------------------------
+docker-compose up -d                # Inicia os containers em segundo plano
+docker-compose down                 # Para e remove os containers
+docker-compose ps                   # Lista os containers em execução
+docker-compose logs postgres        # Exibe os logs do PostgreSQL
+docker-compose exec postgres psql -U admin -d zona_fluxus  # Acessa o banco via psql
+docker-compose exec postgres psql -U admin -d zona_fluxus -c "\dt"  # Lista tabelas
+docker-compose stop                 # Para os containers (sem remover)
+docker-compose restart              # Reinicia os containers
+docker-compose config               # Valida e exibe a configuração composta
+
+# PRISMA & DATABASE
+-----------------------------
+npx prisma db pull                  # Puxa o esquema do banco existente para o schema.prisma
+npx prisma db push                  # Envia o schema.prisma para o banco (cria/atualiza tabelas)
+npx prisma generate                 # Gera o cliente Prisma (ORM)
+npx prisma studio                   # Abre interface web para visualizar/editar dados
+npx prisma migrate dev --name nome  # Cria uma migration (versão) a partir do schema
+npx prisma migrate deploy           # Aplica migrações pendentes em produção
+npx prisma format                   # Formata o schema.prisma
+npx prisma validate                 # Valida a sintaxe do schema
+
+# BACKEND (NPM)
+-----------------------------
+npm run dev:backend                 # Roda o servidor Fastify em modo watch (TS)
+npm run build:backend               # Compila o TypeScript para JS
+npm run start:backend               # Roda o servidor compilado (em produção)
+npx tsx watch backend/src/server.ts # Alternativa para rodar sem script (se preferir)
+
+# EXTRAS
+-----------------------------
+# Verificar se o banco está acessível (via psql)
+docker-compose exec postgres psql -U admin -d zona_fluxus -c "SELECT 1"
+
+# Ver logs em tempo real de todos os containers
+docker-compose logs -f
+
+# Limpar volumes (cuidado: apaga dados persistentes)
+docker-compose down -v
+
+# Ver variáveis de ambiente do container
+docker-compose exec postgres env
+
+====================================================
+
+
+Ligar servidor + teste + db passo a passo:
+
+docker-compose up
+cd backend
+npx prisma generate
+npm run dev:backend
+
+no postman:
+
+url: http://localhost:3333/register
+Headers: Clique na aba "Headers" e adicione:
+Key: Content-Type
+Value: application/json
+body -> raw -> json

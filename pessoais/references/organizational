@@ -1,0 +1,96 @@
+Documentação do Projeto ZONA_FLUXUS
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Visão Geral:
+
+ZONA_FLUXUS é um projeto web desenvolvido em Django, focado em criação de conteúdo visual e identidade de marca. Com diretórios
+organizados para desenvolvimento backend, assets visuais e documentação.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+Descrição Detalhada dos Diretórios
+
+1. assets/
+*Contém os recursos visuais da marca "Zona Fluxus":
+
+Identidade-Visual-ZF-IG-transparencia (1).p... - Arquivo de identidade visual desenvolvido para Instagram (deve ser adaptado para web caso necessário)
+Logo_Zona_Fluxus.jpeg - Logo principal da marca (Fácil remoção de fundo e transição para png)
+
+2. core/
+*Aplicação principal Django com estrutura padrão:
+
+__pycache__/ - Cache de bytecode Python
+__init__.py - Inicializador do módulo
+asgi.py - Configuração ASGI para deploy assíncrono
+settings.py - Configurações do projeto Django
+urls.py - Roteamento de URLs principal
+wsgi.py - Configuração WSGI para deploy tradicional
+
+3. references/
+*Documentação de referência da marca:
+
+branding_Zona_Fluxus.pdf - Manual de identidade visual da marca
+organizational - Para documentação de processos e organização
+tasks - Para definir tasks neceessárias para desenvolvimento
+
+4. scripts/
+*Scripts de automação para organização interna e desenvolvimento:
+
+generateStructure.js - Script JavaScript para geração de estrutura (no bash: node scripts/generateStructure.js)
+
+5. venv/
+*Ambiente virtual Python isolado:
+
+include/, Lib/, Scripts/ - Estrutura do ambiente virtual
+pyvenv.cfg - Configuração do ambiente virtual
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Configuração Técnica
+Tecnologias Utilizadas
+Backend: Django (Python)
+
+Banco de Dados: SQLite (padrão para desenvolvimento)
+
+Frontend: (Não especificado na estrutura atual)
+
+Versionamento: Git (evidenciado pelo .gitignore)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+Dependências do Projeto
+O arquivo requirements.txt deve conter as dependências Python do projeto. Recomenda-se especificar versões para garantir consistência.
+
+Instalação e Configuração
+Pré-requisitos
+Python 3.8+
+
+pip (gerenciador de pacotes Python)
+
+Git (para controle de versão)
+
+Passos para Configuração
+
+1.Clone o repositório (se aplicável)
+
+2.Configure o ambiente virtual:
+*bash*
+python -m venv venv
+# No Windows:
+venv\Scripts\activate
+# No Linux/Mac:
+source venv/bin/activate
+
+3.Instale as dependências:
+*bash*
+pip install -r requirements.txt
+
+4.Configure o banco de dados:
+*bash*
+python manage.py migrate
+
+5.Crie um superusuário (opcional):
+*bash*
+python manage.py createsuperuser
+
+6.Execute o servidor de desenvolvimento:
+*bash*
+python manage.py runserver
